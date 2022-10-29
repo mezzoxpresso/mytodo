@@ -1,0 +1,25 @@
+
+name: Release and deploy todo
+
+# trigger (on event)
+on:
+  push
+    branches:
+    - release/.+
+
+#jobs in the workflow
+jobs:
+  release-and-deploy:
+  #job name
+  #OS that this job will be running on
+    runs-on: ubuntu-latest
+
+    #list of steps to perform the task
+    steps:
+    - name: echo the branch name
+      run: echo "curent branch - $ {{github.ref_name}}"
+    - name: checkout the branch
+      uses: actions/checkout@v3
+      with:
+        ref: ${{github.ref_name}}
+
